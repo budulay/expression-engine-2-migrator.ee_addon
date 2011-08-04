@@ -2,10 +2,12 @@
 
 # ---------------------------------------------------------------------
 #
-# Name   : ExpressionEngine Migrator
-# Version: 1.5
-# Author : Stephen Rushe
-# URL    : http://github.com/srushe/expression-engine-migrator.ee_addon
+# Name      : ExpressionEngine2 MySQL Migrator
+# Version   : 1.5.1
+# URL       : https://github.com/tomdavies/expression-engine-2-migrator.ee_addon
+# Adapted by: Tom Davies
+# From      : https://github.com/srushe/expression-engine-migrator.ee_addon
+# Author    : Stephen Rushe
 #
 # This work is licensed under the Creative Commons Attribution-Share
 # Alike 3.0 Unported License. To view a copy of this license, visit
@@ -153,11 +155,10 @@ while (line = db_file.gets)
   unless options[:all_data]
     next if /^INSERT INTO `?#{table_prefix}_captcha`?/i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_cp_log`?/i.match(line)
+    next if /^INSERT INTO `?#{table_prefix}_cp_search_index`?/i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_email_cache(|_mg|_ml)`?/i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_email_console_cache`?/i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_email_tracker`?/i.match(line)
-    next if /^INSERT INTO `?#{table_prefix}_freeform_entries`?/i.match(line)
-    next if /^INSERT INTO `?#{table_prefix}_freeform_params`?/i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_mailing_list`? /i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_mailing_list_queue`?/i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_message_attachments`?/i.match(line)
@@ -172,7 +173,6 @@ while (line = db_file.gets)
     next if /^INSERT INTO `?#{table_prefix}_security_hashes`?/i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_sessions`?/i.match(line)
     next if /^INSERT INTO `?#{table_prefix}_throttle`?/i.match(line)
-    next if /^INSERT INTO `?#{table_prefix}_trackbacks`?/i.match(line)
   end
   
   # -------------------------------------------------------------------
